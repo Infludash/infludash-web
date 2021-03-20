@@ -1,0 +1,136 @@
+// Load variables
+@import "../../../variables.less";
+
+nav {
+  padding-top: 2rem;
+  transition: padding-top 0.5s;
+  &.scrolled {
+    padding-top: 0.5rem;
+    background: @white;
+    box-shadow: 0 0 5px rgba(@black, 0.2);
+  }
+}
+
+nav img {
+  width: 200px;
+}
+
+section {
+  padding: 4em 0;
+}
+
+#intro {
+  position: relative;
+  z-index: 2;
+  padding-top: 5em;
+
+  img {
+    width: 48%;
+    padding-top: 5em;
+  }
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  .card {
+    background: @white;
+    border-radius: 16px;
+    color: @black;
+    padding: 1em;
+
+    cursor: default;
+
+    .card-body {
+      line-height: 1.5em;
+    }
+  }
+
+  justify-content: space-between;
+}
+
+#features {
+  background: @primaryColorHover;
+  color: @white;
+
+  .card-wrapper {
+    .card {
+      width: 18rem;
+      box-shadow: 0 0 10px rgba(@black, 0.7);
+
+      .card-icon {
+        color: @gray;
+        font-size: 9em;
+      }
+    }
+  }
+}
+
+#pricing {
+  .card-wrapper {
+    .card {
+      text-align: center;
+      &.recommended {
+        box-shadow: 0 0 20px rgba(@black, 0.5);
+      }
+      padding: 2em;
+      border: none;
+      width: 25rem;
+      box-shadow: 0 0 5px rgba(@black, 0.2);
+      .card-icon {
+        transition: color 0.3s;
+        color: @primaryColor;
+        font-size: 5em;
+        span {
+          font-size: 0.25em;
+        }
+      }
+
+      ul {
+        text-align: left;
+        li {
+          padding: 0.5em 0;
+          &.ok::before {
+            margin-right: 1em;
+            content: "👍";
+            color: @green;
+            font-size: 1rem;
+          }
+          &.not-ok::before {
+            margin-right: 1em;
+            content: "❌";
+            color: @red;
+            font-size: 1rem;
+          }
+        }
+        margin-bottom: 3em;
+      }
+      #coming-soon {
+        font-weight: bold;
+        color: @primaryColor;
+        background: @lightGray;
+        padding: 1em 0;
+      }
+    }
+  }
+}
+
+#contact {
+  background: @lightGray;
+}
+
+footer {
+  background-color: @black;
+  color: @white;
+
+  img {
+    width: 10em;
+  }
+  ul li {
+    margin-top: 0.5em;
+  }
+  a {
+    color: @lightGray;
+  }
+}
