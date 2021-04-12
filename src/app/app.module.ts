@@ -6,6 +6,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { LandingComponent } from './pages/landing/landing.component';
+import { AuthModule } from './pages/auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, LandingComponent],
@@ -14,6 +16,8 @@ import { LandingComponent } from './pages/landing/landing.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    AuthModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

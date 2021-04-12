@@ -3,24 +3,24 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.less'],
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {
-    const top = document.querySelector('body').scrollTop;
-
-    window.onscroll = function (e) {
+  ngOnInit(): void {
+    window.onscroll = (e: any) => {
       const current = e.target.scrollingElement.scrollTop;
       const nav = document.querySelector('nav');
-      if (current <= 10) {
-        if (nav.classList.contains('scrolled')) {
-          nav.classList.toggle('scrolled');
-        }
-      } else {
-        if (!nav.classList.contains('scrolled')) {
-          nav.classList.toggle('scrolled');
+      if (nav != null) {
+        if (current <= 10) {
+          if (nav.classList.contains('scrolled')) {
+            nav.classList.toggle('scrolled');
+          }
+        } else {
+          if (!nav.classList.contains('scrolled')) {
+            nav.classList.toggle('scrolled');
+          }
         }
       }
     };
