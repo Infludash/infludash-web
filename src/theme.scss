@@ -1,0 +1,52 @@
+$influ-color: (
+  50: #8950fc,
+  100: #8950fc,
+  200: #8950fc,
+  300: #8950fc,
+  400: #8950fc,
+  500: #8950fc,
+  600: #8950fc,
+  700: #8950fc,
+  800: #8950fc,
+  900: #8950fc,
+  A100: #8950fc,
+  A200: #8950fc,
+  A400: #8950fc,
+  A700: #8950fc,
+  contrast: (
+    50: #292929,
+    100: #292929,
+    200: #292929,
+    300: #292929,
+    400: #292929,
+    500: #292929,
+    600: #292929,
+    700: #292929,
+    800: #292929,
+    900: #292929,
+    A100: #292929,
+    A200: #292929,
+    A400: #292929,
+    A700: #292929,
+  ),
+);
+
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$influ-web-primary: mat-palette($influ-color);
+$influ-web-accent: mat-palette($influ-color, A200, A100, A400);
+$influ-web-warn: mat-palette($mat-red);
+
+$influ_web-theme: mat-light-theme(
+  (
+    color: (
+      primary: $influ-web-primary,
+      accent: $influ-web-accent,
+      warn: $influ-web-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($influ_web-theme);

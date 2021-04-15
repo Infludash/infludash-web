@@ -24,6 +24,11 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  transition: background 0.25s ease-in-out, color 0.25s ease-in-out,
+    fill 0.25s ease-in-out;
+}
+
 body {
   * {
     font-family: "Text";
@@ -33,24 +38,12 @@ body {
       box-shadow: none;
     }
   }
+  background: var(--influ-background);
+  color: var(--influ-text);
 
-  &.light {
-    background: $white;
-    color: $black;
-
-    ::selection {
-      color: $white;
-      background: $black;
-    }
-  }
-  &.dark {
-    background: $black;
-    color: $white;
-
-    ::selection {
-      color: $black;
-      background: $white;
-    }
+  ::selection {
+    color: var(--influ-background);
+    background: var(--influ-text);
   }
 }
 
@@ -187,22 +180,6 @@ body {
   span {
     margin-right: 0.5rem;
   }
-}
-
-// CUSTOMIZE MATERIAL
-
-// overwrite the checkbox background
-::ng-deep .mat-checkbox-checked .mat-checkbox-background,
-.mat-checkbox-indeterminate .mat-checkbox-background {
-  background-color: black !important;
-}
-
-// overwrite the ripple overlay on hover and click
-::ng-deep
-  .mat-checkbox:not(.mat-checkbox-disabled)
-  .mat-checkbox-ripple
-  .mat-ripple-element {
-  background-color: black !important;
 }
 
 html,

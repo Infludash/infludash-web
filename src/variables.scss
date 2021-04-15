@@ -8,3 +8,16 @@ $lightGray: #f3f6f9;
 $gray: #b5b5c3;
 $green: #1acb44;
 $red: #cb1a1a;
+
+:root {
+  --influ-background: #fff;
+  --influ-background-variant: #f3f6f9;
+  --influ-text: #181c32;
+
+  .dark {
+    // Dark colors
+    --influ-background: #181c32;
+    --influ-background-variant: #22263a;
+    --influ-text: #fff;
+  }
+}

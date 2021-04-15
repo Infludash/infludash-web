@@ -53,6 +53,7 @@ section {
 #features {
   background: $primaryColorHover;
   color: $white;
+  scroll-margin: 10em;
 
   .card-wrapper {
     .card {
@@ -68,6 +69,7 @@ section {
 }
 
 #pricing {
+  scroll-margin: 5em;
   .card-wrapper {
     .card {
       text-align: center;
@@ -117,7 +119,8 @@ section {
 }
 
 #contact {
-  background: $lightGray;
+  scroll-margin: 5em;
+  background: var(--influ-background-variant);
 }
 
 footer {
