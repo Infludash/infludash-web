@@ -6,26 +6,35 @@
       </a>
     </div>
     <div class="h-flex">
-      <form class="d-flex flex-column">
+      <form [formGroup]="registerForm" (ngSubmit)="register()" class="d-flex flex-column" id="register">
         <div class="d-flex flex-row justify-content-between name-wrapper">
           <mat-form-field appearance="outline">
             <mat-label>First name</mat-label>
-            <input type="text" matInput required />
+            <input name="first_name" formControlName="first_name" type="text" matInput required />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Last name</mat-label>
-            <input type="text" matInput required />
+            <input name="last_name" type="text" formControlName="last_name" matInput required />
           </mat-form-field>
         </div>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input type="email" matInput required />
+          <input name="email" type="email" formControlName="email" matInput required />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" matInput required />
+          <input name="password1" type="password" formControlName="password1" matInput required />
         </mat-form-field>
-        <button class="btn btn-primary">Register</button>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input name="password2" type="password" formControlName="password2" matInput required />
+        </mat-form-field>
+        <input type="submit" class="btn btn-primary" value="Register">
+        <div *ngIf="errorResponse.length !== 0" class="alert alert-danger" role="alert">
+          <div *ngFor="let error of errorResponse">
+            <span class="error-message">{{error}}</span><br>
+          </div>
+        </div>
       </form>
     </div>
     <p>Already a member?<a href="login">Login now</a></p>

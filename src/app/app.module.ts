@@ -8,9 +8,10 @@ import { AngularMaterialModule } from './angular-material.module';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AuthModule } from './pages/auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, LandingComponent],
+  declarations: [AppComponent, DashboardComponent, LandingComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

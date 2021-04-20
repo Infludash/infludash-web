@@ -15,13 +15,19 @@
   form {
     width: 500px;
     max-width: 80%;
-    margin-top: 25%;
+
+    &#register {
+      margin-top: 8em;
+    }
+    &#login {
+      margin-top: 12em;
+    }
     .name-wrapper {
       .mat-form-field {
         width: 48%;
       }
     }
-    button {
+    input[type="submit"] {
       padding: 0.8em 0;
       margin-bottom: 1.5em;
     }
@@ -44,6 +50,11 @@
     a {
       margin-left: 0.5em;
     }
+  }
+
+  .error-message {
+    line-height: 1.8em;
+    font-size: 0.9em;
   }
 }
 

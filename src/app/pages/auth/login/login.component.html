@@ -6,19 +6,22 @@
       </a>
     </div>
     <div class="h-flex">
-      <form class="d-flex flex-column">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="d-flex flex-column" id="login">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input type="email" matInput required />
+          <input name="email" type="email" formControlName="email" matInput email required />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" matInput required />
+          <input name="password" type="password" formControlName="password" matInput required />
         </mat-form-field>
-        <button class="btn btn-primary">Login</button>
+        <input type="submit" class="btn btn-primary" value="Login" />
         <div class="d-flex flex-row justify-content-between">
           <mat-checkbox>Remember me</mat-checkbox>
           <a href="#">Forgot password?</a>
+        </div>
+        <div *ngIf="errorResponse!==''" class="alert alert-danger mt-4" role="alert">
+          {{errorResponse}}
         </div>
       </form>
     </div>
