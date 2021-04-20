@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   email = '';
   password = '';
-  errorResponse = '';
+  errorResponse: unknown[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,14 +41,14 @@ export class LoginComponent implements OnInit {
         })
         .catch((err: HttpErrorResponse) => {
           if (err.error.non_field_errors) {
-            this.errorResponse = '';
+            this.errorResponse = [];
             for (const error of err.error.non_field_errors) {
-              this.errorResponse += error + '\n';
+              this.errorResponse.push(error);
             }
           }
         });
     } else {
-      this.errorResponse = 'Please fill in all fields';
+      this.errorResponse = ['Please fill in all fields'];
     }
   }
 }

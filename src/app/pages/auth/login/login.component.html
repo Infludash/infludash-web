@@ -20,8 +20,10 @@
           <mat-checkbox>Remember me</mat-checkbox>
           <a href="#">Forgot password?</a>
         </div>
-        <div *ngIf="errorResponse!==''" class="alert alert-danger mt-4" role="alert">
-          {{errorResponse}}
+        <div *ngIf="errorResponse.length !== 0" class="alert alert-danger mt-4" role="alert">
+          <div *ngFor="let error of errorResponse">
+            <span class="error-message">{{error}}</span><br>
+          </div>
         </div>
       </form>
     </div>

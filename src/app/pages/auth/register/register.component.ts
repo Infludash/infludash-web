@@ -75,6 +75,8 @@ export class RegisterComponent implements OnInit {
             }
           }
         });
+    } else {
+      this.errorResponse = ['Please fill in all fields'];
     }
   }
 }
