@@ -1,0 +1,149 @@
+// Load variables
+@import "../../../variables.scss";
+
+.sidenav-container {
+  height: 100%;
+
+  .sidenav {
+    width: 250px;
+
+    .mat-toolbar {
+      background: inherit;
+    }
+  }
+  .mat-toolbar {
+    &.mat-primary {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: $white;
+
+      font-size: 1em;
+    }
+  }
+  .mat-list-base {
+    margin-top: 2em;
+    .mat-icon {
+      height: 1em;
+      font-size: 1.2em;
+      margin-left: auto;
+    }
+  }
+
+  .mat-nav-list .mat-list-item {
+    background: none !important;
+  }
+
+  .mat-nav-list .mat-list-item.active-link {
+    color: $primaryColor;
+    font-weight: bold;
+  }
+}
+
+.nav-item {
+  width: 100%;
+  display: flex;
+  padding: 0.7em 0.5em;
+  border-radius: 7px;
+  align-items: center;
+  color: var(--influ-text);
+
+  .nav-item-text {
+    font-size: 1em;
+    line-height: 1em;
+  }
+}
+
+.mat-toolbar.mat-primary {
+  justify-content: space-between;
+}
+
+.mat-icon-button {
+  margin-right: 1em;
+}
+
+section.user-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .mat-icon {
+    font-size: 1em;
+    height: 1em;
+    margin-left: 5px;
+  }
+}
+
+mat-slide-toggle {
+  ::ng-deep {
+    .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+      background-color: $secondaryColor !important;
+    }
+
+    .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+      background-color: $secondaryColor !important;
+    }
+  }
+}
+
+mat-sidenav {
+  ::ng-deep {
+    .mat-list-base .mat-list-item .mat-list-item-content,
+    .mat-list-base .mat-list-option .mat-list-item-content {
+      padding: 1.7em;
+      align-items: center;
+    }
+
+    .active-link {
+      .mat-list-item-content .nav-item {
+        color: $white;
+        background: $primaryColor;
+      }
+    }
+  }
+}
+
+.sidenav {
+  background-color: var(--influ-background);
+  color: var(--influ-text);
+}
+
+.dashboard-content {
+  flex: 1;
+  overflow: auto;
+  background-color: var(--influ-background-variant);
+  color: var(--influ-text);
+}
+
+.logo {
+  width: 100%;
+  img {
+    margin: 0 20%;
+    width: 60%;
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.dashboard-content {
+  padding: 2em;
+}
+
+.mat-icon.mode-icon {
+  margin: 0 0.5em;
+}
+
+.mode-toggle {
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.rotated {
+  -ms-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}

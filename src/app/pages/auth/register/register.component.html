@@ -6,7 +6,8 @@
       </a>
     </div>
     <div class="h-flex">
-      <form [formGroup]="registerForm" (ngSubmit)="register()" class="d-flex flex-column" id="register">
+      <form *ngIf="!loading; else currentlyLoading" [formGroup]="registerForm" (ngSubmit)="register()"
+        class="d-flex flex-column" id="register">
         <div class="d-flex flex-row justify-content-between name-wrapper">
           <mat-form-field appearance="outline">
             <mat-label>First name</mat-label>
@@ -31,7 +32,10 @@
         </mat-form-field>
         <input type="submit" class="btn btn-primary" value="Register">
         <div *ngIf="errorResponse.length !== 0" class="alert alert-danger" role="alert">
-          <div *ngFor="let error of errorResponse">
+          <div *ngFor="let error of errorResponse" class="v-flex">
+            <span class="material-icons">
+              highlight_off
+            </span>
             <span class="error-message">{{error}}</span><br>
           </div>
         </div>
@@ -41,3 +45,9 @@
   </div>
   <div class="auth-img"></div>
 </div>
+
+<ng-template #currentlyLoading>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

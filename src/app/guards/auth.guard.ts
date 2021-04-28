@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
 
   checkLoggedOut(): boolean {
     if (this.token.getRefreshToken()) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/app/dashboard']);
       return false;
     } else {
       return true;

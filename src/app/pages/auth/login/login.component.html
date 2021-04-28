@@ -6,14 +6,17 @@
       </a>
     </div>
     <div class="h-flex">
-      <form [formGroup]="loginForm" (ngSubmit)="login()" class="d-flex flex-column" id="login">
+      <form *ngIf="!loading; else currentlyLoading" [formGroup]="loginForm" (ngSubmit)="login()"
+        class="d-flex flex-column" id="login">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input name="email" type="email" formControlName="email" matInput email required />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input name="password" type="password" formControlName="password" matInput required />
+          <input name="password" [type]="hide ? 'password' : 'text'" formControlName="password" matInput required />
+          <mat-icon class="visibility-toggle" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
+            'visibility'}}</mat-icon>
         </mat-form-field>
         <input type="submit" class="btn btn-primary" value="Login" />
         <div class="d-flex flex-row justify-content-between">
@@ -21,7 +24,10 @@
           <a href="#">Forgot password?</a>
         </div>
         <div *ngIf="errorResponse.length !== 0" class="alert alert-danger mt-4" role="alert">
-          <div *ngFor="let error of errorResponse">
+          <div *ngFor="let error of errorResponse" class="v-flex">
+            <span class="material-icons">
+              highlight_off
+            </span>
             <span class="error-message">{{error}}</span><br>
           </div>
         </div>
@@ -31,3 +37,10 @@
   </div>
   <div class="auth-img"></div>
 </div>
+
+
+<ng-template #currentlyLoading>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

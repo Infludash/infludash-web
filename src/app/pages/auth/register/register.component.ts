@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
   email = '';
   password = '';
   errorResponse: unknown[] = [];
+  loading = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private api: ApiService,
@@ -35,6 +37,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
+    this.loading = true;
     if (
       this.registerForm.get('first_name')?.valid &&
       this.registerForm.get('last_name')?.valid &&
@@ -51,6 +54,7 @@ export class RegisterComponent implements OnInit {
           }
         })
         .catch((err: HttpErrorResponse) => {
+          this.loading = false;
           console.log(err.error);
 
           this.errorResponse = [];
@@ -76,6 +80,7 @@ export class RegisterComponent implements OnInit {
           }
         });
     } else {
+      this.loading = false;
       this.errorResponse = ['Please fill in all fields'];
     }
   }

@@ -51,8 +51,8 @@
       margin-left: 0.5em;
     }
   }
-
   .error-message {
+    margin-left: 0.5rem;
     line-height: 1.8em;
     font-size: 0.9em;
   }
@@ -62,4 +62,16 @@
   width: 60%;
   background: url(/assets/images/back.jpg) center center no-repeat;
   background-size: cover;
+}
+
+.alert {
+  padding: 0.5rem 1rem;
+}
+
+.loader {
+  margin-top: 10em;
+}
+
+.visibility-toggle {
+  cursor: pointer;
 }

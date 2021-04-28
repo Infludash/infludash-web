@@ -5,17 +5,10 @@ import { EmailConfirmComponent } from './pages/auth/email-confirm/email-confirm.
 import { LoginComponent } from './pages/auth/login/login.component';
 import { LogoutComponent } from './pages/auth/logout/logout.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    canActivate: [AuthGuard],
-    data: { requiresLoggedIn: true },
-    component: DashboardComponent,
-  },
   {
     path: 'login',
     canActivate: [AuthGuard],
@@ -36,6 +29,13 @@ const routes: Routes = [
   },
   { path: 'email-confirm', component: EmailConfirmComponent },
   { path: '', component: LandingComponent },
+  {
+    path: 'app',
+    canActivate: [AuthGuard],
+    data: { requiresLoggedIn: true },
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard-routing.module').then((m) => m.DashboardRoutingModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
@@ -43,6 +43,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
+      enableTracing: false,
     }),
   ],
   exports: [RouterModule],

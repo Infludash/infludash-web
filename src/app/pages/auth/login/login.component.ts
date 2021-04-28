@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   email = '';
   password = '';
   errorResponse: unknown[] = [];
-
+  loading = false;
+  hide = true;
   constructor(
     private formBuilder: FormBuilder,
     private api: ApiService,
@@ -31,23 +32,36 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    this.loading = true;
     if (this.loginForm.get('email')?.valid && this.loginForm.get('password')?.valid) {
       this.api
         .postRequest('login', this.loginForm.value, ApiType.auth)
         .then((response: any) => {
           this.token.saveToken(response.access_token);
           this.token.saveRefreshToken(response.refresh_token);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/app/dashboard']);
         })
         .catch((err: HttpErrorResponse) => {
+          this.loading = false;
           if (err.error.non_field_errors) {
             this.errorResponse = [];
             for (const error of err.error.non_field_errors) {
               this.errorResponse.push(error);
             }
           }
+          if (err.error.email) {
+            for (const error of err.error.email) {
+              this.errorResponse.push(error);
+            }
+          }
+          if (err.error.password1) {
+            for (const error of err.error.password1) {
+              this.errorResponse.push(error);
+            }
+          }
         });
     } else {
+      this.loading = false;
       this.errorResponse = ['Please fill in all fields'];
     }
   }
