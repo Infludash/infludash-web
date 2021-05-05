@@ -13,6 +13,7 @@ export class ModeService {
 
   setMode(mode: string): void {
     localStorage.setItem('mode', mode);
+    this.setModeToBody();
   }
 
   toggleMode(): void {
@@ -20,6 +21,18 @@ export class ModeService {
       this.setMode('dark');
     } else if (this.getMode() === 'dark') {
       this.setMode('light');
+    }
+    this.setModeToBody();
+  }
+
+  setModeToBody(): void {
+    if (this.getMode() === 'light') {
+      document.querySelector('body')?.classList.add('light');
+      document.querySelector('body')?.classList.remove('dark');
+    }
+    if (this.getMode() === 'dark') {
+      document.querySelector('body')?.classList.add('dark');
+      document.querySelector('body')?.classList.remove('light');
     }
   }
 }

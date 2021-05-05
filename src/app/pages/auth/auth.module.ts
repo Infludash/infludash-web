@@ -9,11 +9,6 @@ import { EmailConfirmComponent } from './email-confirm/email-confirm.component';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, LogoutComponent, EmailConfirmComponent],
-  imports: [
-    CommonModule,
-    AngularMaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, AngularMaterialModule, FormsModule, ReactiveFormsModule],
 })
 export class AuthModule {}

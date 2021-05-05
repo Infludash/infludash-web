@@ -10,6 +10,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const materialModules = [
   MatIconModule,
@@ -22,6 +26,10 @@ const materialModules = [
   MatListModule,
   MatMenuModule,
   MatSlideToggleModule,
+  MatCardModule,
+  MatTabsModule,
+  MatDialogModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

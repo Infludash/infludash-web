@@ -35,10 +35,15 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     if (this.loginForm.get('email')?.valid && this.loginForm.get('password')?.valid) {
       this.api
-        .postRequest('login', this.loginForm.value, ApiType.auth)
+        .apiRequest('post', 'login', ApiType.auth, false, this.loginForm.value)
         .then((response: any) => {
           this.token.saveToken(response.access_token);
           this.token.saveRefreshToken(response.refresh_token);
+          localStorage.setItem('email', this.loginForm.get('email')?.value);
+          localStorage.setItem(
+            'username',
+            `${response.user.first_name} ${response.user.last_name}`
+          );
           this.router.navigate(['/app/dashboard']);
         })
         .catch((err: HttpErrorResponse) => {

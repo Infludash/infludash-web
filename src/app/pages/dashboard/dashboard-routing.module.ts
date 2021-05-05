@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashComponent } from './dash/dash.component';
 import { DashboardComponent } from './dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SocialChannelsComponent } from './social-channels/social-channels.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'dashboard', component: DashComponent },
+      { path: 'social-channels', component: SocialChannelsComponent },
       { path: '**', component: NotFoundComponent },
     ],
   },

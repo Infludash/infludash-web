@@ -4,8 +4,8 @@
     [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
       <a class="logo logo d-flex align-items-center" routerLink="/app/dashboard">
-        <img *ngIf="mode=='light'" src="/assets/images/logo/infludash-logo.png" alt="logo" />
-        <img *ngIf="mode=='dark'" src="/assets/images/logo/infludash-logo-negative.png" alt="logo" />
+        <img *ngIf="modeService.getMode()=='light'" src="/assets/images/logo/infludash-logo.png" alt="logo" />
+        <img *ngIf="modeService.getMode()=='dark'" src="/assets/images/logo/infludash-logo-negative.png" alt="logo" />
       </a>
     </mat-toolbar>
     <mat-nav-list>
@@ -26,18 +26,19 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span class="title">{{page | titlecase}}</span>
+        <h2 class="title">{{page | titlecase}}</h2>
       </div>
       <div class="d-flex align-items-center">
         <div class="d-flex mr-2">
-          <mat-icon class="mode-toggle" [class]="mode==='dark'?'rotated':''" (click)="toggleMode($event)">brightness_4
+          <mat-icon class="mode-toggle" [class]="modeService.getMode()==='dark'?'rotated':''" (click)="toggleMode()">
+            brightness_4
           </mat-icon>
         </div>
         <section class="user-link" [matMenuTriggerFor]="userMenu">
-          <span>username</span>
+          <span>{{username||'username'}}</span>
           <mat-icon>expand_more</mat-icon>
         </section>
-        <mat-menu #userMenu="matMenu">
+        <mat-menu #userMenu="matMenu" [class]="modeService.getMode()" xPosition="before">
           <a mat-menu-item routerLink='/app/profile'>
             <mat-icon>person</mat-icon>
             <span>Your profile</span>

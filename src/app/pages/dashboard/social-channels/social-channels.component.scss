@@ -1,0 +1,27 @@
+// Load variables
+@import "../../../../variables.scss";
+
+.social-icon {
+  .mat-icon {
+    width: 100%;
+    font-size: 4em;
+  }
+
+  img {
+    width: 100px;
+  }
+}
+
+.social-widget {
+  width: 300px;
+}
+
+.channel-info {
+  position: absolute;
+  bottom: 0;
+  padding: 0.5em 1.5em;
+  background: $secondaryColor;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  color: $white;
+}

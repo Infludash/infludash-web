@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('password2')?.valid
     ) {
       this.api
-        .postRequest('registration', this.registerForm.value, ApiType.auth)
+        .apiRequest('post', 'registration', ApiType.auth, false, this.registerForm.value)
         .then((response: any) => {
           console.log(response);
           if (response.detail === 'Verification e-mail sent.') {

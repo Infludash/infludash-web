@@ -78,6 +78,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+p {
+  line-height: 1.5em;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -194,4 +198,93 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.dashboard-content-header {
+  background-color: var(--influ-background);
+  width: 100%;
+  padding: 1em 1em;
+  border-radius: 10px;
+  box-shadow: 0px 1px 5px rgba(49, 49, 49, 0.1) !important;
+}
+
+app-widget {
+  flex-grow: 1;
+}
+
+app-widget.clickable {
+  cursor: pointer;
+  .mat-card:hover {
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+.social-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--influ-background-variant);
+  width: 200px;
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid var(--influ-background);
+  transition: border ease-in-out 0.25s;
+  .svg-inline--fa {
+    font-size: 4em !important;
+    color: var(--influ-text);
+  }
+  span {
+    margin-top: 0.5em;
+  }
+  &:hover {
+    border: 1px solid $secondaryColor;
+  }
+}
+
+// Custom Material Styles
+
+.mat-menu-panel {
+  background: var(--influ-background) !important;
+  .mat-menu-item,
+  .mat-menu-item .mat-icon {
+    color: var(--influ-text) !important;
+  }
+}
+
+.mat-card {
+  background: var(--influ-background) !important;
+  color: var(--influ-text) !important;
+  box-shadow: 0px 1px 5px rgba(49, 49, 49, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 2em !important;
+}
+
+.mat-card-header-text {
+  margin: 0 !important;
+}
+
+.mat-tab-label {
+  color: var(--influ-text) !important;
+}
+
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent,
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+  color: $white !important;
+}
+
+.mat-dialog-container {
+  color: var(--influ-text) !important;
+  background: var(--influ-background) !important;
+}
+
+.mat-snack-bar-container {
+  background: var(--influ-background) !important;
+  color: var(--influ-text) !important;
 }

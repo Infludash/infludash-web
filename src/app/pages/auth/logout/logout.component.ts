@@ -17,11 +17,13 @@ export class LogoutComponent implements OnInit {
   }
 
   async logout(): Promise<void> {
-    const resp = await this.api.postRequest('logout', {}, ApiType.auth);
+    const resp = await this.api.apiRequest('post', 'logout', ApiType.auth, true, {});
     console.log(resp);
     if (resp.detail === 'Successfully logged out.') {
       this.token.removeToken();
       this.token.removeRefreshToken();
+      localStorage.removeItem('email');
+      localStorage.removeItem('username');
       this.loggedIn = false;
       this.router.navigate(['/login']);
     }

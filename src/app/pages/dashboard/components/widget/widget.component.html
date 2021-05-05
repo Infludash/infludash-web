@@ -1,0 +1,21 @@
+<div class="widget">
+  <section *ngIf="showHeader" class="widget-header">
+    <span class="widget-title">{{title}}</span>
+    <div class="widget-controls">
+      <button *ngIf="type==='list'" mat-mini-fab aria-label="Edit" class="widget-control">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="type==='list'" mat-mini-fab aria-label="Add" class="widget-control">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-mini-fab aria-label="Refresh" class="widget-control">
+        <mat-icon>autorenew</mat-icon>
+      </button>
+    </div>
+  </section>
+  <mat-card>
+    <mat-card-content>
+      <ng-content></ng-content>
+    </mat-card-content>
+  </mat-card>
+</div>

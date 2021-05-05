@@ -1,0 +1,25 @@
+<div [class]="modeService.getMode()">
+  <h2 mat-dialog-title>Link a new social channel</h2>
+  <mat-dialog-content>
+    <form>
+      <div class="d-flex">
+        <section class="social-tile" (click)="signInWithGoogle()">
+          <fa-icon [icon]="['fab', 'youtube']"></fa-icon>
+          <span>YouTube</span>
+        </section>
+        <section class="social-tile">
+          <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+          <span>Facebook</span>
+        </section>
+        <section class="social-tile">
+          <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+          <span>Instagram</span>
+        </section>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" (click)="linkChannel()">Create</button>
+  </mat-dialog-actions>
+</div>

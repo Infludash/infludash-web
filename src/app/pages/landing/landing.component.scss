@@ -16,6 +16,8 @@ nav img {
 }
 
 section {
+  background: $white;
+  color: $black;
   padding: 4em 0;
 }
 
@@ -124,8 +126,10 @@ section {
 }
 
 footer {
-  background-color: $black;
-  color: $white;
+  section {
+    background-color: $black;
+    color: $white;
+  }
 
   img {
     width: 10em;

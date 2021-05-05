@@ -1,0 +1,24 @@
+.widget {
+  margin: 1em;
+
+  .widget-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1em;
+    margin-bottom: 1em;
+
+    .widget-title {
+      font-weight: bold;
+      font-size: 1.3em;
+    }
+    .widget-controls {
+      display: flex;
+
+      .widget-control {
+        margin-left: 12px;
+      }
+    }
+  }
+}

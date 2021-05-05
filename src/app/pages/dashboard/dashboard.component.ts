@@ -10,11 +10,16 @@ import { ModeService } from 'src/app/services/mode/mode.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  mode = this.modeService.getMode();
-  slideToggleChecked = false;
   get page(): string {
     return this.router.url.replace('/app/', '');
   }
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router,
+    public modeService: ModeService
+  ) {}
+  slideToggleChecked = false;
 
   menuItems = [
     { icon: 'dashboard', name: 'dashboard' },
@@ -29,14 +34,10 @@ export class DashboardComponent implements OnInit {
     shareReplay()
   );
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private router: Router,
-    private modeService: ModeService
-  ) {}
+  public username: string | null = localStorage.getItem('username');
   ngOnInit(): void {}
 
-  toggleMode(event: Event): void {
+  toggleMode(): void {
     document.querySelector('.mode-toggle')?.classList.toggle('rotated');
 
     this.modeService.toggleMode();

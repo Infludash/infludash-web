@@ -1,0 +1,25 @@
+<div class="d-flex w-100 flex-wrap">
+  <div class="social-widget">
+    <app-widget class="clickable" title="My channels" [showHeader]="false" (click)="openChannelDialog()">
+      <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="social-icon">
+          <mat-icon>add</mat-icon>
+        </div>
+        <p class="mt-2">Link a new channel</p>
+      </div>
+    </app-widget>
+  </div>
+  <div class="social-widget" *ngFor="let channel of channels">
+    <app-widget [showHeader]=false>
+      <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="social-icon">
+          <img [src]="'/assets/images/socials/'+ SocialType[channel.type] + '-logo.png'"
+            [alt]="SocialType[channel.type] + ' logo'" />
+        </div>
+        <section class="channel-info">
+          {{channel.name}}
+        </section>
+      </div>
+    </app-widget>
+  </div>
+</div>

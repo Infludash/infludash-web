@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ModeService } from './services/mode/mode.service';
 
 @Component({
@@ -13,5 +14,6 @@ export class AppComponent {
     if (this.modeService.getMode() === '') {
       this.modeService.setMode('light');
     }
+    this.modeService.setModeToBody();
   }
 }
