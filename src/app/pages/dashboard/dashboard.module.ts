@@ -17,8 +17,25 @@ import {
 } from 'angularx-social-login';
 import { WidgetComponent } from './components/widget/widget.component';
 import { AddChannelDialogComponent } from './components/add-channel-dialog/add-channel-dialog.component';
+import { PostsComponent } from './posts/posts.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DeleteChannelDialogComponent } from './components/delete-channel-dialog/delete-channel-dialog.component';
+import { ToastComponent } from './components/toast/toast.component';
 @NgModule({
-  declarations: [DashboardComponent, DashComponent, NotFoundComponent, SocialChannelsComponent, WidgetComponent, AddChannelDialogComponent],
+  declarations: [
+    DashboardComponent,
+    DashComponent,
+    NotFoundComponent,
+    SocialChannelsComponent,
+    WidgetComponent,
+    AddChannelDialogComponent,
+    PostsComponent,
+    CalendarComponent,
+    DeleteChannelDialogComponent,
+    ToastComponent,
+  ],
   imports: [
     BrowserModule,
     DashboardRoutingModule,
@@ -26,6 +43,10 @@ import { AddChannelDialogComponent } from './components/add-channel-dialog/add-c
     LayoutModule,
     SocialLoginModule,
     FontAwesomeModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [
     {

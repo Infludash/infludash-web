@@ -1,0 +1,16 @@
+.channel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30em;
+}
+
+.channel-social-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  img {
+    width: 80%;
+  }
+}

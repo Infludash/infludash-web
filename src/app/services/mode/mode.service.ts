@@ -26,13 +26,15 @@ export class ModeService {
   }
 
   setModeToBody(): void {
-    if (this.getMode() === 'light') {
-      document.querySelector('body')?.classList.add('light');
-      document.querySelector('body')?.classList.remove('dark');
-    }
-    if (this.getMode() === 'dark') {
-      document.querySelector('body')?.classList.add('dark');
-      document.querySelector('body')?.classList.remove('light');
+    if (window.location.href.indexOf('app') > -1) {
+      if (this.getMode() === 'light') {
+        document.querySelector('body')?.classList.add('light');
+        document.querySelector('body')?.classList.remove('dark');
+      }
+      if (this.getMode() === 'dark') {
+        document.querySelector('body')?.classList.add('dark');
+        document.querySelector('body')?.classList.remove('light');
+      }
     }
   }
 }

@@ -1,0 +1,25 @@
+<div class="row text-center">
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
+      <div class="btn-group">
+        <button mat-icon-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </div>
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+      <div class="btn-group">
+        <button mat-icon-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" mwlCalendarToday [(viewDate)]="viewDate">Today</button>
+  </div>
+</div>
+<br />
+<mwl-calendar-month-view [weekStartsOn]="1" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+  (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
+  (eventTimesChanged)="eventTimesChanged($event)">
+</mwl-calendar-month-view>

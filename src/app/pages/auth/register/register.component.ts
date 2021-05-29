@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   password = '';
   errorResponse: unknown[] = [];
   loading = false;
+  privacyAccept = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,7 +44,8 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('last_name')?.valid &&
       this.registerForm.get('email')?.valid &&
       this.registerForm.get('password1')?.valid &&
-      this.registerForm.get('password2')?.valid
+      this.registerForm.get('password2')?.valid &&
+      this.privacyAccept === true
     ) {
       this.api
         .apiRequest('post', 'registration', ApiType.auth, false, this.registerForm.value)
@@ -80,8 +82,11 @@ export class RegisterComponent implements OnInit {
           }
         });
     } else {
+      if (this.privacyAccept === false) {
+        this.errorResponse.push('You must accept our privacy policy');
+      }
       this.loading = false;
-      this.errorResponse = ['Please fill in all fields'];
+      this.errorResponse.push('Please fill in all required fields');
     }
   }
 }

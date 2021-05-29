@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ModeService } from 'src/app/services/mode/mode.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -17,15 +18,15 @@ export class DashboardComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    public modeService: ModeService
+    public modeService: ModeService,
+    public toast: ToastService
   ) {}
   slideToggleChecked = false;
 
   menuItems = [
     { icon: 'dashboard', name: 'dashboard' },
     { icon: 'trending_up', name: 'analytics' },
-    { icon: 'event', name: 'post' },
-    { icon: 'settings', name: 'settings' },
+    { icon: 'event', name: 'posts' },
     { icon: 'share', name: 'social-channels' },
   ];
 
@@ -35,7 +36,9 @@ export class DashboardComponent implements OnInit {
   );
 
   public username: string | null = localStorage.getItem('username');
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.modeService.setModeToBody();
+  }
 
   toggleMode(): void {
     document.querySelector('.mode-toggle')?.classList.toggle('rotated');

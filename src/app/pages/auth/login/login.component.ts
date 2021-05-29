@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ApiType } from 'src/app/services/api/ApiType';
+import { SocialService } from 'src/app/services/api/social.service';
 import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: ApiService,
     private token: TokenService,
-    private router: Router
+    private router: Router,
+    private social: SocialService
   ) {}
 
   ngOnInit(): void {

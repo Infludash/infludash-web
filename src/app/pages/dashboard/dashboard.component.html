@@ -55,3 +55,6 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<div id="toast-stack">
+  <app-toast *ngFor="let toast of toast.toasts" [duration]="toast.duration">{{toast.message}}</app-toast>
+</div>

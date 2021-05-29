@@ -27,11 +27,16 @@ export class AddChannelDialogComponent implements OnInit {
 
   private socialUser: SocialUser | undefined;
 
+  private googleLoginOptions = {
+    scope:
+      'https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.upload',
+  };
+
   ngOnInit(): void {}
 
   signInWithGoogle(): void {
     this.authService
-      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions)
       .then((result) => {
         this.socialUser = result;
         console.log(this.socialUser);
@@ -53,7 +58,6 @@ export class AddChannelDialogComponent implements OnInit {
           true,
           { socialUser: this.socialUser, userEmail: localStorage.getItem('email') }
         );
-        window.location.reload();
       } catch (error) {
         console.log(error);
         this.openSnackBar('Something went wrong. Please try again.', 'Ok');

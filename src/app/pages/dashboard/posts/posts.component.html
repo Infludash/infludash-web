@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-between">
+  <div id="post">
+    <app-widget title="Select a social channel and start posting">
+      <section class="social-select">
+        <div *ngFor="let channel of allChannels" class="social-select-pop" (click)="toggleSelected($event)">
+          <img [src]="channel.imageUrl" alt="social channel profile image">
+          <div class="social-select-pop-icon">
+            <i *ngIf="socialType[channel.type]==='youtube'" [class]="'fa fa-' + socialType[channel.type] + '-play'"></i>
+            <i *ngIf="socialType[channel.type]==='facebook' || socialType[channel.type]==='twitter'"
+              [class]="'fa fa-' + socialType[channel.type] + '-square'"></i>
+          </div>
+          <div *ngIf="allChannels == []">
+            <div class="loader">
+              <mat-spinner></mat-spinner>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section *ngIf="allChannels.length !== 0; else ConnectChannelText">
+        <div *ngIf="socialSelected">
+          <mat-form-field appearance="outline">
+            <mat-label>Write your post here</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <p id="date">{{selectedDate}}</p>
+          <div class="d-flex justify-content-end">
+            <button mat-raised-button color="primary">Create</button>
+          </div>
+        </div>
+      </section>
+    </app-widget>
+  </div>
+  <div id="calendar">
+    <app-widget [showHeader]=false>
+      <app-calendar (selectedDate)="getSelectedDate($event)"></app-calendar>
+    </app-widget>
+  </div>
+</div>
+
+<ng-template #ConnectChannelText>
+  <p>To create a post, you need to <a href="app/social-channels">connect a channel</a> first.</p>
+</ng-template>

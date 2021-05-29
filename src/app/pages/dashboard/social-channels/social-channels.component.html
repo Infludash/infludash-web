@@ -1,6 +1,6 @@
 <div class="d-flex w-100 flex-wrap">
-  <div class="social-widget">
-    <app-widget class="clickable" title="My channels" [showHeader]="false" (click)="openChannelDialog()">
+  <div class="social-widget" id="add">
+    <app-widget class="clickable" title="My channels" [showHeader]="false" (click)="openAddChannelDialog()">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <div class="social-icon">
           <mat-icon>add</mat-icon>
@@ -9,17 +9,34 @@
       </div>
     </app-widget>
   </div>
-  <div class="social-widget" *ngFor="let channel of channels">
-    <app-widget [showHeader]=false>
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <div class="social-icon">
-          <img [src]="'/assets/images/socials/'+ SocialType[channel.type] + '-logo.png'"
-            [alt]="SocialType[channel.type] + ' logo'" />
+  <div *ngIf="channels; else loader">
+    <div class="social-widget" *ngFor="let channel of channels">
+      <app-widget [showHeader]=false>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <div class="social-icon">
+            <img *ngIf="mode.getMode() === 'dark'; else socialImage"
+              [src]="'/assets/images/socials/'+ SocialType[channel.type] + '-logo-negative.png'"
+              [alt]="SocialType[channel.type] + ' logo (negative)'" />
+
+            <ng-template #socialImage>
+              <img [src]="'/assets/images/socials/'+ SocialType[channel.type] + '-logo.png'"
+                [alt]="SocialType[channel.type] + ' logo'">
+            </ng-template>
+          </div>
+          <section class="channel-info">
+            {{channel.name}}
+          </section>
+          <button class="channel-options" mat-icon-button aria-label="Options for the channel"
+            (click)="openDeleteChannelDialog(channel)">
+            <mat-icon>link_off</mat-icon>
+          </button>
         </div>
-        <section class="channel-info">
-          {{channel.name}}
-        </section>
-      </div>
-    </app-widget>
+      </app-widget>
+    </div>
   </div>
+  <ng-template #loader>
+    <div class="loader">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
 </div>

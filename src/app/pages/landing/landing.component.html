@@ -1,17 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="">
+    <a class="navbar-brand unselectable" href="">
       <img src="/assets/images/logo/infludash-logo.png" alt="logo" />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -27,12 +20,17 @@
         </li>
       </ul>
       <ul class="navbar-nav d-flex align-items-center">
-        <li class="nav-item">
+        <li *ngIf="loggedIn === false" class="nav-item">
           <a class="nav-link" href="login">Login</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="loggedIn === false" class="nav-item">
           <a class="nav-link" href="register">
             <button type="button" class="btn btn-primary">Register</button>
+          </a>
+        </li>
+        <li *ngIf="loggedIn === true" class="nav-item">
+          <a class="nav-link" href="app/dashboard">
+            <button type="button" class="btn btn-primary">Dashboard</button>
           </a>
         </li>
       </ul>
@@ -47,7 +45,7 @@
         <h2 class="mt-3 mb-4">
           A handy and modern marketing platform for influencers
         </h2>
-        <section>
+        <section id="button-wrapper">
           <a href="#features" class="mr-1 btn btn-primary">
             <div class="icon-btn">
               <span class="material-icons"> preview </span> Check it out
@@ -62,7 +60,7 @@
           </a>
         </section>
       </div>
-      <img src="/assets/images/banner.png" alt="banner" />
+      <img class="unselectable" src="/assets/images/banner.png" alt="banner" />
     </div>
   </div>
 </section>
@@ -71,9 +69,9 @@
     <h2 class="mb-5">Why would you choose infludash?</h2>
     <div class="card-wrapper">
       <div class="card">
-        <span class="card-icon material-icons"> alarm_on </span>
+        <span class="card-icon material-icons unselectable"> alarm_on </span>
         <div class="card-body">
-          <h5 class="card-title">You save time</h5>
+          <h5 class="card-title">Time Saving</h5>
           <p class="card-text">
             Spend more time inspiring your social network and less managing
             them.
@@ -81,7 +79,7 @@
         </div>
       </div>
       <div class="card">
-        <span class="card-icon material-icons"> smartphone </span>
+        <span class="card-icon material-icons unselectable"> smartphone </span>
         <div class="card-body">
           <h5 class="card-title">Focussed on influencers</h5>
           <p class="card-text">
@@ -91,7 +89,7 @@
         </div>
       </div>
       <div class="card">
-        <span class="card-icon material-icons"> event </span>
+        <span class="card-icon material-icons unselectable"> event </span>
         <div class="card-body">
           <h5 class="card-title">Schedule posts</h5>
           <p class="card-text">
@@ -101,7 +99,7 @@
         </div>
       </div>
       <div class="card">
-        <span class="card-icon material-icons"> smart_toy </span>
+        <span class="card-icon material-icons unselectable"> smart_toy </span>
         <div class="card-body">
           <h5 class="card-title">AI enhanced</h5>
           <p class="card-text">
@@ -115,7 +113,7 @@
 </section>
 <section id="pricing">
   <div class="container">
-    <h2 class="mb-5">Choose the perfect plan for your</h2>
+    <h2 class="mb-5">Pick the perfect plan for you</h2>
     <div class="card-wrapper">
       <div class="card">
         <h2 class="card-icon">€0<span>/month</span></h2>
@@ -154,7 +152,7 @@
         <div class="card-body">
           <h5 class="card-title">Pro plan</h5>
           <p class="card-text">
-            A plan customized for your needs. Starting at €50.
+            A plan customized for your needs. Starting at €50/month.
           </p>
         </div>
         <p id="coming-soon">coming soon</p>
@@ -170,30 +168,17 @@
 <footer class="dark">
   <section>
     <div class="container">
-      <div class="d-flex flex-row justify-content-between">
+      <div class="d-flex flex-row justify-content-between align-items-center">
         <div>
-          <img
-            src="/assets/images/logo/infludash-logo-negative.png"
-            alt="logo-negative"
-          />
+          <img src="/assets/images/logo/infludash-logo-negative.png" alt="logo-negative" />
         </div>
+        <p class="text-center">
+          2021 | Created by <a href="#">Tycho Verstraete</a>
+        </p>
         <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="login">Login</a></li>
-          <li><a href="register">Register</a></li>
-        </ul>
-        <ul>
-          <li><a href="cookies">Cookie policy</a></li>
           <li><a href="privacy-policy">Privacy policy</a></li>
         </ul>
       </div>
-    </div>
-    <div class="container">
-      <p class="mt-5 w-100 text-center">
-        2021 | Created by <a href="#">Tycho Verstraete</a>
-      </p>
     </div>
   </section>
 </footer>

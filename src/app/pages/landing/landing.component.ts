@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api/api.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-landing',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-  constructor() {}
+  constructor(private api: ApiService, private token: TokenService) {}
+
+  loggedIn = false;
 
   ngOnInit(): void {
     window.onscroll = (e: any) => {
@@ -24,5 +28,14 @@ export class LandingComponent implements OnInit {
         }
       }
     };
+    this.checkLoggedIn();
+  }
+
+  async checkLoggedIn(): Promise<void> {
+    if (await this.api.checkValidToken(this.token.getRefreshToken())) {
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+    }
   }
 }

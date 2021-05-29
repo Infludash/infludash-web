@@ -1,0 +1,8 @@
+<p>Are you sure you want to unlink this channel from your account?</p>
+<div class="d-flex justify-content-end mt-4">
+  <div class="mr-1">
+    <button mat-flat-button color="warn" mat-dialog-close>No thanks</button>
+  </div>
+  <button mat-raised-button color="primary" (click)="deleteChannel(data.channel)" cdkFocusInitial
+    mat-dialog-close="Deleted">Yes, I'm sure</button>
+</div>

@@ -46,7 +46,7 @@ export class ApiService {
       }
     }
     let headers = new HttpHeaders();
-    if (type === 'get') {
+    if (type === 'get' || type === 'delete') {
       headers = headers.append('accept', 'application/json');
     } else if (type === 'post') {
       headers = headers.append('content-type', 'application/json');
@@ -65,6 +65,8 @@ export class ApiService {
       return this.http.get(fullUrl, { headers }).toPromise();
     } else if (type === 'post') {
       return this.http.post(fullUrl, payload, { headers }).toPromise();
+    } else if (type === 'delete') {
+      return this.http.delete(fullUrl, { headers }).toPromise();
     }
   }
 
@@ -82,7 +84,7 @@ export class ApiService {
     }
   }
 
-  private async checkValidToken(token: string): Promise<boolean> {
+  public async checkValidToken(token: string): Promise<boolean> {
     try {
       const resp = await this.apiRequest(
         'post',

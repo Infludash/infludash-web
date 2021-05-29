@@ -30,6 +30,9 @@ section {
     width: 48%;
     padding-top: 5em;
   }
+  #button-wrapper {
+    padding: 1em 0;
+  }
 }
 
 .card-wrapper {
@@ -101,11 +104,14 @@ section {
             color: $green;
             font-size: 1rem;
           }
-          &.not-ok::before {
-            margin-right: 1em;
-            content: "❌";
-            color: $red;
-            font-size: 1rem;
+          &.not-ok {
+            &::before {
+              margin-right: 1em;
+              content: "❌";
+              color: $red;
+              font-size: 1rem;
+            }
+            color: $gray;
           }
         }
         margin-bottom: 3em;
@@ -129,6 +135,7 @@ footer {
   section {
     background-color: $black;
     color: $white;
+    padding: 2em 0;
   }
 
   img {

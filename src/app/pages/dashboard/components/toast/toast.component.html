@@ -1,0 +1,17 @@
+<div class="influ-toast">
+  <div class="influ-toast-header">
+    <img class="influ-toast-logo" *ngIf="mode.getMode() == 'dark'; else lightLogo"
+      src="/assets/images/logo/infludash-logo-negative.png" alt="logo">
+  </div>
+  <p class="influ-toast-content">
+    <ng-content></ng-content>
+  </p>
+  <div class="progress" style="height: 5px;">
+    <div class="progress-bar" [style]="'width: '+currentPercent+'%'" role="progressbar"
+      [attr.aria-valuenow]="currentDuration" aria-valuemin="0" [attr.aria-valuemax]="duration">
+    </div>
+  </div>
+</div>
+<ng-template #lightLogo>
+  <img class="influ-toast-logo" #lightLogo src="/assets/images/logo/infludash-logo.png" alt="logo">
+</ng-template>

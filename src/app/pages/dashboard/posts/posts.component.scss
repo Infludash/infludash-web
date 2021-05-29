@@ -1,0 +1,49 @@
+// Load variables
+@import "../../../../variables.scss";
+
+#post {
+  width: 40%;
+  .mat-form-field {
+    width: 100%;
+    textarea {
+      min-height: 10em;
+    }
+  }
+
+  .social-select {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+
+    .social-select-pop {
+      position: relative;
+      cursor: pointer;
+      img {
+        width: 5em;
+        border-radius: 50%;
+        box-shadow: 2px 2px 5px rgba($black, 0.4);
+      }
+
+      .social-select-pop-icon {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        .fa {
+          font-size: 1.5em;
+          color: $secondaryColor;
+        }
+      }
+
+      &.selected {
+        img {
+          border: solid var(--influ-text) 3px;
+        }
+      }
+    }
+  }
+}
+
+#calendar {
+  width: 60%;
+}

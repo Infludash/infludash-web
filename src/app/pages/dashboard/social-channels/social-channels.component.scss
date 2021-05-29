@@ -1,6 +1,11 @@
 // Load variables
 @import "../../../../variables.scss";
 
+.social-widget {
+  width: 300px;
+  max-height: 300px;
+}
+
 .social-icon {
   .mat-icon {
     width: 100%;
@@ -8,12 +13,9 @@
   }
 
   img {
-    width: 100px;
+    margin: 1.8em;
+    width: 6em;
   }
-}
-
-.social-widget {
-  width: 300px;
 }
 
 .channel-info {
@@ -24,4 +26,15 @@
   width: 100%;
   border-radius: 0 0 10px 10px;
   color: $white;
+}
+
+.channel-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;
+}
+
+.loader {
+  margin: 2em;
 }

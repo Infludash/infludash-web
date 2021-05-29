@@ -10,8 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 @NgModule({
-  declarations: [AppComponent, LandingComponent, NotFoundComponent],
+  declarations: [AppComponent, LandingComponent, NotFoundComponent, PrivacyPolicyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -6,6 +6,10 @@ import { AddChannelDialogComponent } from '../components/add-channel-dialog/add-
 import { ApiService } from 'src/app/services/api/api.service';
 import { ApiType } from 'src/app/services/api/ApiType';
 import { SocialType } from 'src/app/helpers/SocialType';
+import { ModeService } from 'src/app/services/mode/mode.service';
+import { SocialService } from 'src/app/services/api/social.service';
+import { DeleteChannelDialogComponent } from '../components/delete-channel-dialog/delete-channel-dialog.component';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   templateUrl: './social-channels.component.html',
@@ -15,7 +19,10 @@ export class SocialChannelsComponent implements OnInit {
   constructor(
     private library: FaIconLibrary,
     private dialog: MatDialog,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public mode: ModeService,
+    private social: SocialService,
+    private toastService: ToastService
   ) {
     library.addIcons(faYoutube);
     this.SocialType = SocialType;
@@ -28,11 +35,27 @@ export class SocialChannelsComponent implements OnInit {
     console.log(this.channels);
   }
 
-  openChannelDialog(): void {
+  openDeleteChannelDialog(channel: any): void {
+    const dialogRef = this.dialog.open(DeleteChannelDialogComponent, {
+      data: { channel },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'Deleted') {
+        this.toastService.addToast('Channel deleted successfully!');
+        this.ngOnInit();
+      }
+    });
+  }
+
+  openAddChannelDialog(): void {
     const dialogRef = this.dialog.open(AddChannelDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      if (result === 'Created') {
+        this.toastService.addToast('Channel created successfully!');
+        this.ngOnInit();
+      }
     });
   }
 
@@ -41,5 +64,18 @@ export class SocialChannelsComponent implements OnInit {
       userEmail: localStorage.getItem('email'),
     });
     return socials;
+  }
+
+  async getMyYtChannel(): Promise<any> {
+    const channel = await this.apiService.apiRequest(
+      'post',
+      'socials/youtube/channel',
+      ApiType.base,
+      true,
+      {
+        access_token: await this.social.checkAndGetAccessToken(),
+      }
+    );
+    return channel;
   }
 }
