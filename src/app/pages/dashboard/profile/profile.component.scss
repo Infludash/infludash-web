@@ -1,0 +1,17 @@
+@import "../../../../variables.scss";
+
+#changePassword {
+  width: 50em;
+}
+#profileInfo {
+  width: 50em;
+}
+button {
+  margin-top: 1em;
+  width: fit-content;
+  padding: 0.1em 1em;
+}
+
+.note {
+  color: $secondaryColor;
+}

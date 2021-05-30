@@ -13,11 +13,15 @@ export class AuthGuard implements CanActivate {
     const url: string = state.url;
     const requiresLoggedIn = route.data.requiresLoggedIn || false;
     const requiresLoggedOut = route.data.requiresLoggedOut || false;
+    const requiresPartlyLoggedIn = route.data.requiresPartlyLoggedIn || false;
     if (requiresLoggedIn) {
       return await this.checkLoggedIn();
     }
     if (requiresLoggedOut) {
       return this.checkLoggedOut();
+    }
+    if (requiresPartlyLoggedIn) {
+      return this.checkPartlyLoggedIn();
     }
     return false;
   }
@@ -40,6 +44,15 @@ export class AuthGuard implements CanActivate {
       return false;
     } else {
       return true;
+    }
+  }
+
+  checkPartlyLoggedIn(): boolean {
+    if (localStorage.getItem('justRegistered')) {
+      return true;
+    } else {
+      this.router.navigate(['']);
+      return false;
     }
   }
 }

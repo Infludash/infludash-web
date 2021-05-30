@@ -48,7 +48,7 @@ export class ApiService {
     let headers = new HttpHeaders();
     if (type === 'get' || type === 'delete') {
       headers = headers.append('accept', 'application/json');
-    } else if (type === 'post') {
+    } else if (type === 'post' || type === 'patch') {
       headers = headers.append('content-type', 'application/json');
     }
     if (authenticated === true) {
@@ -67,6 +67,8 @@ export class ApiService {
       return this.http.post(fullUrl, payload, { headers }).toPromise();
     } else if (type === 'delete') {
       return this.http.delete(fullUrl, { headers }).toPromise();
+    } else if (type === 'patch') {
+      return this.http.patch(fullUrl, payload, { headers }).toPromise();
     }
   }
 

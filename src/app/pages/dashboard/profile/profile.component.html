@@ -1,0 +1,64 @@
+<h2></h2>
+<p></p>
+<app-widget title="Profile settings">
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Profile information">
+      <form class="d-flex flex-column" id="profileInfo" *ngIf="user">
+        <div class="d-flex flex-row justify-content-between">
+          <mat-form-field appearance="outline">
+            <mat-label>First name</mat-label>
+            <input name="first_name" type="text" [(ngModel)]="user.first_name" matInput required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last name</mat-label>
+            <input name="last_name" type="text" [(ngModel)]="user.last_name" matInput required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input name="username" type="text" [(ngModel)]="user.username" matInput required />
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input name="email" type="email" [(ngModel)]="user.email" matInput email required />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="updateProfile()">Save changes to profile</button>
+      </form>
+    </mat-tab>
+    <mat-tab label="Change password">
+      <form class="d-flex flex-column" id="changePassword" [formGroup]="changePasswordForm"
+        (ngSubmit)="changePassword()">
+        <div class="d-flex flex-row justify-content-between">
+          <mat-form-field appearance="outline">
+            <mat-label>Old password</mat-label>
+            <input name="old_password" type="password" formControlName="old_password" matInput required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>New password</mat-label>
+            <input name="new_password1" type="password" formControlName="new_password1" matInput required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm new password</mat-label>
+            <input name="new_password2" type="password" formControlName="new_password2" matInput required />
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">Change password</button>
+      </form>
+    </mat-tab>
+    <mat-tab label="Your data">
+      <h2>Request your data</h2>
+      <p class="my-2">If you're interested in looking into your data, you can just click the button below. <br>
+        This will download a JSON file containing every data we have saved for your account.</p>
+      <button mat-raised-button color="primary">Download your data</button>
+    </mat-tab>
+    <mat-tab label="Delete account">
+      <div>
+        <h2>Permanently delete your account</h2>
+        <p class="my-2">Once your account is deleted, all of its resources and data will be permanently deleted. <br>
+          Before deleting your account, please download any data or information that you wish to retain.</p>
+        <span class="note">Note: This will result in removing all the data linked to your account.</span>
+      </div>
+      <button class="btn btn-secondary p-2">Remove your account</button>
+    </mat-tab>
+  </mat-tab-group>
+</app-widget>

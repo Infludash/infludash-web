@@ -29,7 +29,12 @@ const routes: Routes = [
     data: { requiresLoggedIn: true },
     component: LogoutComponent,
   },
-  { path: 'email-confirm', component: EmailConfirmComponent },
+  {
+    path: 'email-confirm',
+    canActivate: [AuthGuard],
+    data: { requiresPartlyLoggedIn: true },
+    component: EmailConfirmComponent,
+  },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   {
     path: 'forgot-password',

@@ -3,7 +3,7 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <a class="logo logo d-flex align-items-center" routerLink="/app/dashboard">
+      <a class="logo logo d-flex align-items-center unselectable" routerLink="/app/dashboard">
         <img *ngIf="modeService.getMode()=='light'" src="/assets/images/logo/infludash-logo.png" alt="logo" />
         <img *ngIf="modeService.getMode()=='dark'" src="/assets/images/logo/infludash-logo-negative.png" alt="logo" />
       </a>
@@ -30,7 +30,8 @@
       </div>
       <div class="d-flex align-items-center">
         <div class="d-flex mr-2">
-          <mat-icon class="mode-toggle" [class]="modeService.getMode()==='dark'?'rotated':''" (click)="toggleMode()">
+          <mat-icon class="mode-toggle unselectable" [class]="modeService.getMode()==='dark'?'rotated':''"
+            (click)="toggleMode()">
             brightness_4
           </mat-icon>
         </div>

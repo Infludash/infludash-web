@@ -268,10 +268,27 @@ app-widget.clickable {
 }
 
 .notify-wrapper {
+  position: relative;
+  img {
+    width: 15em;
+    margin-bottom: 1em;
+  }
   .mat-icon {
-    font-size: 10em;
+    position: absolute;
+    font-size: 20em;
     width: fit-content;
     padding-right: 0.2em;
+    color: $lightGray;
+    z-index: 1;
+  }
+
+  .card {
+    max-width: 100%;
+    .card-body {
+      padding: 5em 2em;
+      z-index: 2;
+    }
+    width: 50em;
   }
 }
 
@@ -345,6 +362,10 @@ app-widget {
 .mat-chip.mat-standard-chip {
   background-color: var(--influ-background-variant) !important;
   color: var(--influ-text) !important;
+}
+
+.mat-tab-body-wrapper {
+  margin-top: 2em;
 }
 
 // Calendar

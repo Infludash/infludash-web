@@ -1,9 +1,16 @@
-<div class="h-100 container d-flex justify-content-center align-items-center notify-wrapper">
-  <div>
-    <mat-icon>mark_email_read</mat-icon>
-  </div>
-  <div>
-    <h1>Verify your email</h1>
-    <p>We have send you an email where you can verify your email address so you can use Infludash</p>
+<div class="h-100 container d-flex flex-column justify-content-center align-items-center notify-wrapper">
+  <a href="" class="unselectable"> <img src="assets/images/logo/infludash-logo.png" alt="logo"></a>
+  <div class="card">
+    <mat-icon class="unselectable">mark_email_read</mat-icon>
+    <div class="card-body">
+      <h5 class="card-title">
+        Verify your email
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">Thanks for signing up!</h6>
+      <p class="card-text">Before getting started, could you verify your email address by
+        clicking on the link we
+        just emailed to you? If you didn't receive the email, we will gladly send you another.</p>
+      <button mat-raised-button color="primary" class="mt-4">Resend verification email</button>
+    </div>
   </div>
 </div>

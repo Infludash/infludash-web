@@ -4,6 +4,7 @@ import { DashComponent } from './dash/dash.component';
 import { DashboardComponent } from './dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PostsComponent } from './posts/posts.component';
+import { ProfileComponent } from './profile/profile.component';
 import { SocialChannelsComponent } from './social-channels/social-channels.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashComponent },
       { path: 'social-channels', component: SocialChannelsComponent },
       { path: 'posts', component: PostsComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: '**', component: NotFoundComponent },
     ],
   },

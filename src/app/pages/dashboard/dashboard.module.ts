@@ -23,6 +23,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DeleteChannelDialogComponent } from './components/delete-channel-dialog/delete-channel-dialog.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -35,6 +37,7 @@ import { ToastComponent } from './components/toast/toast.component';
     CalendarComponent,
     DeleteChannelDialogComponent,
     ToastComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,8 @@ import { ToastComponent } from './components/toast/toast.component';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

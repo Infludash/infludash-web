@@ -52,6 +52,7 @@ export class RegisterComponent implements OnInit {
         .then((response: any) => {
           console.log(response);
           if (response.detail === 'Verification e-mail sent.') {
+            localStorage.setItem('justRegistered', this.registerForm.get('email')?.value);
             this.router.navigate(['/email-confirm']);
           }
         })

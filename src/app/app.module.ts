@@ -11,6 +11,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent, LandingComponent, NotFoundComponent, PrivacyPolicyComponent],
   imports: [
@@ -22,6 +24,8 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
     HttpClientModule,
     LayoutModule,
     DashboardModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
