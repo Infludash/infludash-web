@@ -40,7 +40,8 @@ export class AddChannelDialogComponent implements OnInit {
   };
 
   private fbLoginOptions = {
-    scope: 'public_profile, email, user_posts, user_photos',
+    scope:
+      'pages_show_list, instagram_basic, instagram_content_publish, pages_read_engagement, pages_manage_posts, public_profile',
     return_scopes: true,
     enable_profile_selector: true,
   };

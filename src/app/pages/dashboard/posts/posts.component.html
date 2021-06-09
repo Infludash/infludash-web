@@ -82,8 +82,25 @@
             </div>
           </form>
 
-          <form *ngIf="toggledType==='facebook'">
-            <p>test</p>
+          <form *ngIf="toggledType==='facebook'" [formGroup]="postFbForm" (ngSubmit)="postFbPosts()">
+            <section class="my-4" id="pageChecks">
+              <h4 class="mb-2">Select your page(s):</h4>
+              <p *ngFor="let page of selectedFbPages">
+                <mat-checkbox [attr.name]="page.id" [attr.at]="page.access_token">{{page.name}}</mat-checkbox>
+              </p>
+            </section>
+            <mat-form-field appearance="outline">
+              <mat-label>Message</mat-label>
+              <textarea matInput required formControlName="message"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Schedule</mat-label>
+              <input [(ngModel)]="selectedDate" type="datetime-local" [ngModelOptions]="{standalone: true}" required
+                matInput [min]="today">
+            </mat-form-field>
+            <div class="d-flex justify-content-end">
+              <input type="submit" class="btn btn-primary" value="Post" />
+            </div>
           </form>
         </div>
       </section>

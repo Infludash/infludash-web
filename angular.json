@@ -63,7 +63,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "infludash-web:build"
+            "browserTarget": "infludash-web:build",
+            "ssl": true,
+            "sslCert": "localhost.crt",
+            "sslKey": "localhost.key"
           },
           "configurations": {
             "production": {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModeService } from 'src/app/services/mode/mode.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ApiType } from 'src/app/services/api/ApiType';
@@ -7,9 +7,17 @@ import { Observable, Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CalendarEvent } from 'angular-calendar';
 import { startOfDay } from 'date-fns';
+import { MatAutocomplete } from '@angular/material/autocomplete';
+import { ToastService } from 'src/app/services/toast/toast.service';
+
+export interface Page {
+  name: string;
+  accessToken: string;
+  id: string;
+}
 
 @Component({
   providers: [DatePipe],
@@ -21,6 +29,7 @@ export class PostsComponent implements OnInit {
   @ViewChild('thumbnailUpload') thumbnailUpload: any;
 
   uploadYTVidForm: FormGroup = new FormGroup({});
+  postFbForm: FormGroup = new FormGroup({});
   socialType: string[] = SocialType;
   allChannels: any[] = [];
   socialSelected = false;
@@ -42,12 +51,14 @@ export class PostsComponent implements OnInit {
   calendarEvents: CalendarEvent[] = [];
 
   today: Date = new Date();
+  selectedFbPages: any[] = [];
 
   constructor(
     public mode: ModeService,
     public apiService: ApiService,
     public datepipe: DatePipe,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toast: ToastService
   ) {
     this.videoFiles = new Subject<FileList>();
   }
@@ -60,6 +71,10 @@ export class PostsComponent implements OnInit {
       categoryId: ['', Validators.required],
       privacyStatus: ['', Validators.required],
     });
+    this.postFbForm = this.formBuilder.group({
+      message: ['', Validators.required],
+    });
+
     this.allChannels = await this.getAllChannels();
     this.getVideoCategories();
     this.calendarEvents = await this.getCalendarEvents();
@@ -128,6 +143,10 @@ export class PostsComponent implements OnInit {
     for (let i = 0; i < notSelected.length; i++) {
       const element = notSelected[i];
       element.classList.toggle('disabled');
+    }
+
+    if (target.getAttribute('type') === 'facebook' && this.socialSelected === true) {
+      this.getUserPages();
     }
   }
 
@@ -203,6 +222,47 @@ export class PostsComponent implements OnInit {
         ]
       );
       console.log(step2);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getUserPages(): Promise<void> {
+    const id = document.querySelector('.social-select-pop.selected')?.getAttribute('id');
+    const pages = await this.apiService.apiRequest(
+      'get',
+      `socials/facebook/${id}/pages`,
+      ApiType.base,
+      true
+    );
+    this.selectedFbPages = pages.data;
+  }
+
+  async postFbPosts(): Promise<void> {
+    try {
+      const selectedFbCheck = document.querySelectorAll('#pageChecks .mat-checkbox-checked');
+      const selectedSocial = document.querySelector('[type="facebook"]') as HTMLElement;
+      const selectedSocialId = selectedSocial.getAttribute('id');
+      for (let i = 0; i < selectedFbCheck.length; i++) {
+        const page = selectedFbCheck[i];
+        let scheduledDate: Date;
+        let scheduledMinutes: number;
+        scheduledDate = new Date(this.selectedDate ?? '');
+        const dateDiff = scheduledDate.getTime() - new Date().getTime();
+        console.log(dateDiff);
+        scheduledMinutes = Math.floor(dateDiff / 60000); // # minutes
+        console.log(scheduledMinutes);
+
+        this.apiService.apiRequest('post', 'socials/facebook/post', ApiType.base, true, {
+          pageId: page.getAttribute('name'),
+          message: this.postFbForm.get('message')?.value,
+          accessToken: page.getAttribute('at'),
+          scheduledFor: scheduledMinutes,
+          socialId: selectedSocialId,
+        });
+        this.toast.addToast('Facebook post scheduled successfully');
+        this.ngOnInit();
+      }
     } catch (error) {
       console.log(error);
     }

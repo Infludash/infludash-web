@@ -19,6 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const materialModules = [
   MatIconModule,
@@ -40,6 +41,7 @@ const materialModules = [
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatAutocompleteModule,
 ];
 
 @NgModule({
