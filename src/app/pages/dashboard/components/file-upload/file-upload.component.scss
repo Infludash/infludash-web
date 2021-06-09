@@ -1,0 +1,25 @@
+.file-upload {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+
+  input[type="file"] {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+
+    /* Hiding the tap color when it is clicked on touch devices ( this is not widely supported ) */
+    -webkit-tap-highlight-color: transparent;
+    opacity: 0;
+    /* Move it to the upper layer above the container div's layer to ensure that it is always clickable */
+    z-index: 1;
+  }
+
+  p {
+    margin: 0 1em;
+  }
+}

@@ -1,0 +1,7 @@
+<div *ngIf="InfluFormGroupName" class="file-upload">
+  <button mat-fab color="primary" aria-label="Upload file">
+    <mat-icon>{{icon}}</mat-icon>
+    <input required type="file" id="file" name="file" [accept]="accept" (change)="addFileName($event)">
+  </button>
+  <p>{{fileName}}</p>
+</div>

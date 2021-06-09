@@ -13,8 +13,9 @@ import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CookieDialogComponent } from './components/cookie-dialog/cookie-dialog.component';
 @NgModule({
-  declarations: [AppComponent, LandingComponent, NotFoundComponent, PrivacyPolicyComponent],
+  declarations: [AppComponent, LandingComponent, NotFoundComponent, PrivacyPolicyComponent, CookieDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

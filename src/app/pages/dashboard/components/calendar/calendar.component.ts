@@ -1,29 +1,15 @@
+import { DatePipe } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  TemplateRef,
-  ViewChild,
 } from '@angular/core';
-import {
-  CalendarView,
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-} from 'angular-calendar';
-import {
-  subDays,
-  startOfDay,
-  addDays,
-  endOfMonth,
-  addHours,
-  isSameMonth,
-  isSameDay,
-  endOfDay,
-} from 'date-fns';
+import { CalendarView, CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
+import { startOfDay, endOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
 
 const colors: any = {
@@ -46,8 +32,9 @@ const colors: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
+  providers: [DatePipe],
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, AfterViewInit {
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -58,23 +45,35 @@ export class CalendarComponent implements OnInit {
 
   @Input() events: CalendarEvent[] = [];
 
-  @Output() selectedDateEvent = new EventEmitter<any>();
+  @Output() selectedDateEvent = new EventEmitter<Date>();
 
   changeSelectedDate(): void {
     this.selectedDateEvent.emit(this.viewDate);
   }
 
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
+  ngAfterViewInit(): void {
+    this.todaySelected();
+  }
   ngOnInit(): void {
     console.log('init');
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    this.viewDate = date;
-    document.querySelector('.cal-today')?.classList.remove('cal-today');
-    console.log(this.viewDate);
+  dayClicked(event: any): void {
+    // const date = event.day.date;
+    // const fdate = this.datePipe.transform(event.day.date, 'dd/MM/yyyyTHH:mm');
+    // const target = event.sourceEvent.target as HTMLElement;
+    // this.viewDate = new Date(fdate?.toString());
+    // document.querySelector('.selected')?.classList.remove('selected');
+    // target.closest('mwl-calendar-month-cell')?.classList.add('selected');
+    // this.changeSelectedDate();
+  }
 
-    this.changeSelectedDate();
+  todaySelected(): void {
+    if (!document.querySelector('.cal-day-cell.cal-today')?.classList.contains('selected')) {
+      document.querySelector('.selected')?.classList.remove('selected');
+      document.querySelector('.cal-day-cell.cal-today')?.classList.add('selected');
+    }
   }
 
   eventTimesChanged({ event, newStart, newEnd }: CalendarEventTimesChangedEvent): void {

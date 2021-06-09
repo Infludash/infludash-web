@@ -25,9 +25,10 @@ export class DashboardComponent implements OnInit {
 
   menuItems = [
     { icon: 'dashboard', name: 'dashboard' },
-    { icon: 'trending_up', name: 'analytics' },
-    { icon: 'event', name: 'posts' },
     { icon: 'share', name: 'social-channels' },
+    { icon: 'post_add', name: 'posts' },
+    { icon: 'today', name: 'calendar' },
+    { icon: 'trending_up', name: 'analytics' },
   ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(

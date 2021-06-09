@@ -41,10 +41,10 @@ export class SocialChannelsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'Deleted') {
-        this.toastService.addToast('Channel deleted successfully!');
+      let n: ReturnType<typeof setTimeout>;
+      n = setTimeout(() => {
         this.ngOnInit();
-      }
+      }, 1000);
     });
   }
 
@@ -52,10 +52,10 @@ export class SocialChannelsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddChannelDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'Created') {
-        this.toastService.addToast('Channel created successfully!');
+      let n: ReturnType<typeof setTimeout>;
+      n = setTimeout(() => {
         this.ngOnInit();
-      }
+      }, 1000);
     });
   }
 

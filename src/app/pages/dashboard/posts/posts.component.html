@@ -1,13 +1,17 @@
 <div class="d-flex justify-content-between">
   <div id="post">
-    <app-widget title="Select a social channel and start posting">
+    <app-widget title="Make a post">
+      <h3 class="mb-4">Select one or more social channel(s) and start posting</h3>
       <section class="social-select">
-        <div *ngFor="let channel of allChannels" class="social-select-pop" (click)="toggleSelected($event)">
-          <img [src]="channel.imageUrl" alt="social channel profile image">
+        <div *ngFor="let channel of allChannels" class="social-select-pop" [attr.type]="socialType[channel.type]"
+          [id]="channel.socialId" (click)="toggleSelected($event)">
+          <img [src]="channel.imageUrl" [attr.type]="socialType[channel.type]" [id]="channel.socialId"
+            alt="social channel profile image">
           <div class="social-select-pop-icon">
-            <i *ngIf="socialType[channel.type]==='youtube'" [class]="'fa fa-' + socialType[channel.type] + '-play'"></i>
-            <i *ngIf="socialType[channel.type]==='facebook' || socialType[channel.type]==='twitter'"
-              [class]="'fa fa-' + socialType[channel.type] + '-square'"></i>
+            <i *ngIf="socialType[channel.type]==='youtube'" [attr.type]="socialType[channel.type]"
+              [id]="channel.socialId" [class]="'fa fa-' + socialType[channel.type] + '-play'"></i>
+            <i *ngIf="socialType[channel.type]==='facebook' || socialType[channel.type]==='instagram'"
+              [attr.type]="socialType[channel.type]" [class]="'fa fa-' + socialType[channel.type] + '-square'"></i>
           </div>
           <div *ngIf="allChannels == []">
             <div class="loader">
@@ -18,21 +22,76 @@
       </section>
       <section *ngIf="allChannels.length !== 0; else ConnectChannelText">
         <div *ngIf="socialSelected">
-          <mat-form-field appearance="outline">
-            <mat-label>Write your post here</mat-label>
-            <textarea matInput></textarea>
-          </mat-form-field>
-          <p id="date">{{selectedDate}}</p>
-          <div class="d-flex justify-content-end">
-            <button mat-raised-button color="primary">Create</button>
-          </div>
+          <form *ngIf="toggledType==='youtube'" [formGroup]="uploadYTVidForm" (ngSubmit)="uploadYTVideo($event)">
+            <p>Before uploading, make sure that your channel is <a href="https://www.youtube.com/verify"
+                target="_blank">verified</a>
+            </p>
+            <div class="d-flex my-4">
+              <app-file-upload #videoUpload accept="video/*" icon="movie" formName="video"
+                [InfluFormGroupName]="uploadYTVidForm">
+              </app-file-upload>
+              <app-file-upload #thumbnailUpload accept="image/jpeg,image/jpg,image/png,image/gif" icon="image"
+                formName="thumbnail" [InfluFormGroupName]="uploadYTVidForm">
+              </app-file-upload>
+            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Title</mat-label>
+              <input formControlName="title" type="text" matInput required />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea formControlName="description" matInput required></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Tags *</mat-label>
+              <mat-chip-list #chipList aria-label="Tags for your video">
+                <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeTag(tag)">
+                  {{tag}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New tag..." [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="addTag($event)" formControlName="tags" required>
+              </mat-chip-list>
+            </mat-form-field>
+            <div class="d-flex justify-content-between align-items-center">
+              <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select required formControlName="privacyStatus">
+                  <mat-option value="public">Public</mat-option>
+                  <mat-option value="private">Private</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select required formControlName="categoryId">
+                  <mat-option *ngFor="let category of videoCategories" [value]="category.id">{{category.title}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Schedule</mat-label>
+              <input [(ngModel)]="selectedDate" type="datetime-local" [ngModelOptions]="{standalone: true}" required
+                matInput [min]="today">
+            </mat-form-field>
+            <!-- <p id="date">{{selectedDate}}</p> -->
+            <div class="d-flex justify-content-end">
+              <input type="submit" class="btn btn-primary" value="Create" />
+            </div>
+          </form>
+
+          <form *ngIf="toggledType==='facebook'">
+            <p>test</p>
+          </form>
         </div>
       </section>
     </app-widget>
   </div>
   <div id="calendar">
     <app-widget [showHeader]=false>
-      <app-calendar (selectedDate)="getSelectedDate($event)"></app-calendar>
+      <app-calendar [events]="calendarEvents" (selectedDateEvent)="getSelectedDate($event)"></app-calendar>
     </app-widget>
   </div>
 </div>

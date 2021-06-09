@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ApiType } from 'src/app/services/api/ApiType';
 import { ModeService } from 'src/app/services/mode/mode.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-delete-channel-dialog',
@@ -12,6 +13,7 @@ import { ModeService } from 'src/app/services/mode/mode.service';
 export class DeleteChannelDialogComponent implements OnInit {
   constructor(
     public mode: ModeService,
+    private toast: ToastService,
     private api: ApiService,
     @Inject(MAT_DIALOG_DATA) public data: { channel: any }
   ) {}
@@ -26,10 +28,7 @@ export class DeleteChannelDialogComponent implements OnInit {
         ApiType.base,
         true
       );
-      const toast = document.getElementById('toast');
-      if (toast !== null) {
-        toast.style.display = 'block';
-      }
+      this.toast.addToast('Channel deleted successfully!');
     } catch (error) {
       console.log(error);
     }

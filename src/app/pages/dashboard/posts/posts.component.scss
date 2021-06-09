@@ -12,13 +12,13 @@
 
   .social-select {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 1em;
 
     .social-select-pop {
       position: relative;
       cursor: pointer;
+      margin-right: 1em;
       img {
         width: 5em;
         border-radius: 50%;
@@ -40,10 +40,19 @@
           border: solid var(--influ-text) 3px;
         }
       }
+
+      &.disabled {
+        cursor: default;
+        img {
+          opacity: 0.2;
+        }
+      }
     }
   }
 }
 
 #calendar {
-  width: 60%;
+  position: fixed;
+  right: 2em;
+  width: 50%;
 }

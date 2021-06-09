@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   authUrl: 'http://127.0.0.1:8000/auth/',
   apiUrl: 'https://localhost:44301/api/',
-  googleClient: '95174018387-ihpb0mine49hkdmef6viuhcu2pecgbbg.apps.googleusercontent.com',
+  googleClient: '95174018387-nhsb2c39baqggnbpdkq7mbvdh3k3ejk4.apps.googleusercontent.com',
+  facebookId: '247918263757831',
 };
 
 /*

@@ -1,0 +1,8 @@
+<div class="influ-dropzone" ngx-dropzone [accept]="type" (change)="onSelect($event)" [multiple]="multipleFiles"
+  [maxFileSize]="maxFileSize">
+  <ngx-dropzone-label>{{caption}}</ngx-dropzone-label>
+  <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true"
+    (removed)="onRemove(f)">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-preview>
+</div>

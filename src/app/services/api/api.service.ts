@@ -5,6 +5,11 @@ import { environment as env } from 'src/environments/environment';
 import { TokenService } from '../token/token.service';
 import { Router } from '@angular/router';
 
+export interface InfluHeader {
+  key: string;
+  value: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +25,8 @@ export class ApiService {
     apiType: ApiType,
     authenticated?: boolean,
     payload?: any,
-    user: boolean = true
+    user: boolean = true,
+    customHeaders?: InfluHeader[]
   ): Promise<any> {
     if (authenticated === true && user === true) {
       console.log('authenticated user');
@@ -50,7 +56,16 @@ export class ApiService {
       headers = headers.append('accept', 'application/json');
     } else if (type === 'post' || type === 'patch') {
       headers = headers.append('content-type', 'application/json');
+    } else if (type === 'file-post') {
+      headers = headers.append('content-type', 'multipart/form-data');
     }
+
+    if (customHeaders) {
+      for (const header of customHeaders) {
+        headers = headers.append(header.key, header.value);
+      }
+    }
+
     if (authenticated === true) {
       console.log('authenticated request');
 
@@ -63,7 +78,7 @@ export class ApiService {
     }
     if (type === 'get') {
       return this.http.get(fullUrl, { headers }).toPromise();
-    } else if (type === 'post') {
+    } else if (type === 'post' || type === 'file-post') {
       return this.http.post(fullUrl, payload, { headers }).toPromise();
     } else if (type === 'delete') {
       return this.http.delete(fullUrl, { headers }).toPromise();

@@ -98,6 +98,32 @@ p {
   background: $black;
 }
 
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--influ-text-variant) !important;
+  opacity: 1 !important; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--influ-text-variant) !important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--influ-text-variant) !important;
+}
+
+a {
+  color: $secondaryColor;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    color: $secondaryColorHover;
+  }
+}
+
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -277,6 +303,7 @@ app-widget.clickable {
     position: absolute;
     font-size: 20em;
     width: fit-content;
+    height: fit-content;
     padding-right: 0.2em;
     color: $lightGray;
     z-index: 1;
@@ -367,6 +394,18 @@ app-widget {
 .mat-tab-body-wrapper {
   margin-top: 2em;
 }
+.mat-option,
+.mat-select-value {
+  color: var(--influ-text) !important;
+}
+
+.mat-select-panel {
+  background: var(--influ-background) !important;
+}
+
+.mat-select-arrow {
+  color: var(--influ-text) !important;
+}
 
 // Calendar
 
@@ -379,7 +418,6 @@ app-widget {
       background-color: var(--influ-background);
     }
     .cal-cell:hover {
-      cursor: pointer;
       background-color: var(--influ-background-variant);
     }
     &.cal-header {
@@ -402,7 +440,17 @@ app-widget {
   }
 
   .cal-day-cell.cal-today {
-    background-color: var(--influ-background-variant);
+    background-color: var(--influ-background);
+  }
+
+  .cal-day-cell.selected {
+    background-color: $primaryColor;
+    .cal-day-number {
+      color: $white;
+    }
+    &:hover {
+      background-color: $primaryColorHover;
+    }
   }
 
   .cal-days {
@@ -423,4 +471,10 @@ app-widget {
   color: $white;
   background-color: $secondaryColor;
   border-color: $secondaryColor;
+}
+
+// Drop zone
+
+[_nghost-uor-c201] {
+  background: $primaryColor !important;
 }

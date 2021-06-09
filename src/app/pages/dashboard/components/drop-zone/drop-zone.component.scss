@@ -1,0 +1,20 @@
+@import "../../../../../variables.scss";
+
+ngx-dropzone,
+.influ-dropzone {
+  margin: 2em 0;
+}
+
+.influ-dropzone {
+  height: 5em;
+  background: var(--influ-background-variant);
+  color: var(--influ-text);
+  border: 2px dashed var(--influ-text-variant);
+  border-radius: 5px;
+  font-size: 1.2em;
+  padding: 0 1em;
+}
+
+.custom-dropzone.ngx-dz-hovered {
+  border: 2px dashed $primaryColor;
+}

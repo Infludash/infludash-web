@@ -25,6 +25,11 @@ import { DeleteChannelDialogComponent } from './components/delete-channel-dialog
 import { ToastComponent } from './components/toast/toast.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PostsCalendarComponent } from './posts-calendar/posts-calendar.component';
+import { DropZoneComponent } from './components/drop-zone/drop-zone.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -38,6 +43,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DeleteChannelDialogComponent,
     ToastComponent,
     ProfileComponent,
+    PostsCalendarComponent,
+    DropZoneComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +60,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     }),
     FormsModule,
     ReactiveFormsModule,
+    NgxDropzoneModule,
   ],
   providers: [
     {
@@ -63,10 +72,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(env.googleClient),
           },
-          // {
-          //   id: FacebookLoginProvider.PROVIDER_ID,
-          //   provider: new FacebookLoginProvider('clientId'),
-          // },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(env.facebookId),
+          },
         ],
       } as SocialAuthServiceConfig,
     },

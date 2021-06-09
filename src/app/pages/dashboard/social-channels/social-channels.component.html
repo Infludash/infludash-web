@@ -9,7 +9,7 @@
       </div>
     </app-widget>
   </div>
-  <div *ngIf="channels; else loader">
+  <div *ngIf="channels; else loader" class="d-flex flex-wrap">
     <div class="social-widget" *ngFor="let channel of channels">
       <app-widget [showHeader]=false>
         <div class="d-flex flex-column align-items-center justify-content-center">
