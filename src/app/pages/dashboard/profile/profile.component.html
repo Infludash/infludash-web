@@ -49,7 +49,7 @@
       <h2>Request your data</h2>
       <p class="my-2">If you're interested in looking into your data, you can just click the button below. <br>
         This will download a JSON file containing every data we have saved for your account.</p>
-      <button mat-raised-button color="primary">Download your data</button>
+      <button mat-raised-button color="primary" (click)="downloadData()">Download your data</button>
     </mat-tab>
     <mat-tab label="Delete account">
       <div>
@@ -58,7 +58,7 @@
           Before deleting your account, please download any data or information that you wish to retain.</p>
         <span class="note">Note: This will result in removing all the data linked to your account.</span>
       </div>
-      <button class="btn btn-secondary p-2">Remove your account</button>
+      <button class="btn btn-secondary p-2" (click)="deleteProfile()">Remove your account</button>
     </mat-tab>
   </mat-tab-group>
 </app-widget>

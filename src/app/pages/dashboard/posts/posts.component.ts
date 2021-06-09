@@ -78,6 +78,7 @@ export class PostsComponent implements OnInit {
     this.allChannels = await this.getAllChannels();
     this.getVideoCategories();
     this.calendarEvents = await this.getCalendarEvents();
+    this.socialSelected = false;
   }
 
   async getAllChannels(): Promise<any> {

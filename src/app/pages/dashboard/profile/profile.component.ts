@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ApiType } from 'src/app/services/api/ApiType';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -15,7 +16,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private api: ApiService,
     private toast: ToastService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private token: TokenService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -46,6 +48,33 @@ export class ProfileComponent implements OnInit {
         this.toast.addToast('Something went wrong! Please try again.');
       }
     }
+  }
+
+  async deleteProfile(): Promise<void> {
+    try {
+      const resp = await this.api.apiRequest(
+        'delete',
+        `user/${localStorage.getItem('email')}`,
+        ApiType.base,
+        true
+      );
+      localStorage.clear();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async downloadData(): Promise<void> {
+    try {
+      const data: string = await this.api.apiRequest(
+        'get',
+        `user/${localStorage.getItem('email')}`,
+        ApiType.base,
+        true
+      );
+      this.download('data.json', JSON.stringify(data));
+    } catch (error) {}
   }
 
   async changePassword(): Promise<void> {
@@ -80,5 +109,15 @@ export class ProfileComponent implements OnInit {
     } else {
       this.toast.addToast('Please fill in all required fields');
     }
+  }
+
+  download(filename: string, text: string): void {
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
   }
 }
