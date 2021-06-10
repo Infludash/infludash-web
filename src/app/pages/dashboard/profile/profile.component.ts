@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ApiType } from 'src/app/services/api/ApiType';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { TokenService } from 'src/app/services/token/token.service';
+import { DeleteProfileDialogComponent } from '../components/delete-profile-dialog/delete-profile-dialog.component';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -17,7 +19,8 @@ export class ProfileComponent implements OnInit {
     private api: ApiService,
     private toast: ToastService,
     private formBuilder: FormBuilder,
-    private token: TokenService
+    private token: TokenService,
+    public dialog: MatDialog
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -51,18 +54,24 @@ export class ProfileComponent implements OnInit {
   }
 
   async deleteProfile(): Promise<void> {
-    try {
-      const resp = await this.api.apiRequest(
-        'delete',
-        `user/${localStorage.getItem('email')}`,
-        ApiType.base,
-        true
-      );
-      localStorage.clear();
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
+    const dialogRef = this.dialog.open(DeleteProfileDialogComponent);
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result === 'Deleted') {
+        try {
+          const resp = await this.api.apiRequest(
+            'delete',
+            `user/${localStorage.getItem('email')}`,
+            ApiType.base,
+            true
+          );
+          localStorage.clear();
+          window.location.reload();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
   }
 
   async downloadData(): Promise<void> {

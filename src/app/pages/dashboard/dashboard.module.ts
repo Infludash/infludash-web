@@ -30,6 +30,7 @@ import { DropZoneComponent } from './components/drop-zone/drop-zone.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { DeletePostDialogComponent } from './components/delete-post-dialog/delete-post-dialog.component';
+import { DeleteProfileDialogComponent } from './components/delete-profile-dialog/delete-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DeletePostDialogComponent } from './components/delete-post-dialog/delet
     DropZoneComponent,
     FileUploadComponent,
     DeletePostDialogComponent,
+    DeleteProfileDialogComponent,
   ],
   imports: [
     BrowserModule,
