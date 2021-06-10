@@ -1,0 +1,18 @@
+// Load variables
+@import "../../../../variables.scss";
+
+h2 {
+  margin-bottom: 1em;
+}
+
+.scheduled-post {
+  margin-top: 2em;
+  width: 90%;
+  background-color: var(--influ-background-variant);
+  padding: 1em 2em;
+  border-radius: 5px;
+
+  .date {
+    color: var(--influ-text-variant);
+  }
+}

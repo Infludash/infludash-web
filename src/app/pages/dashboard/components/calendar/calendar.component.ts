@@ -34,7 +34,7 @@ const colors: any = {
   styleUrls: ['./calendar.component.scss'],
   providers: [DatePipe],
 })
-export class CalendarComponent implements OnInit, AfterViewInit {
+export class CalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -52,11 +52,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private datePipe: DatePipe) {}
-  ngAfterViewInit(): void {
-    this.todaySelected();
-  }
   ngOnInit(): void {
-    console.log('init');
+    this.viewDate = new Date();
   }
 
   dayClicked(event: any): void {

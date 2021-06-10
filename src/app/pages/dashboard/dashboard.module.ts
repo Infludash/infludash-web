@@ -29,6 +29,7 @@ import { PostsCalendarComponent } from './posts-calendar/posts-calendar.componen
 import { DropZoneComponent } from './components/drop-zone/drop-zone.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { DeletePostDialogComponent } from './components/delete-post-dialog/delete-post-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     PostsCalendarComponent,
     DropZoneComponent,
     FileUploadComponent,
+    DeletePostDialogComponent,
   ],
   imports: [
     BrowserModule,

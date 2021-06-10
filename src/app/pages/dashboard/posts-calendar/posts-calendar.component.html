@@ -1,3 +1,25 @@
-<app-widget [showHeader]="false">
-  <app-calendar></app-calendar>
+<app-widget title="Scheduled posts">
+  <div class="d-flex flex-row">
+    <div style="width:40%">
+      <h2>Scheduled posts</h2>
+      <div *ngIf="futurePosts.length !== 0 else noFuturePosts">
+        <div *ngFor="let post of futurePosts" class="scheduled-post">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3>{{post.title}}</h3>
+            <p class="date">{{post.scheduled | date: 'd/M/yyyy, hh:mm a'}}</p>
+            <button class="post-button" mat-mini-fab color="warn" aria-label="Delete post"
+              (click)="deletePost(post.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-calendar [events]="calendarEvents" style="width:60%"></app-calendar>
+  </div>
 </app-widget>
+
+<ng-template #noFuturePosts>
+  <p>You have no future posts scheduled. Go to the <a href="/app/posts">posts page</a> and schedule a post for your
+    social media accounts.</p>
+</ng-template>

@@ -217,12 +217,14 @@ export class PostsComponent implements OnInit {
         formData,
         true,
         [
-          { key: 'Location', value: step1.url },
-          { key: 'Id', value: selectedSocialId },
-          { key: 'ScheduledFor', value: scheduledMinutes },
+          { key: 'Location', value: String(step1.url) },
+          { key: 'Id', value: String(selectedSocialId) },
+          { key: 'ScheduledFor', value: String(scheduledMinutes) },
         ]
       );
       console.log(step2);
+      this.toast.addToast('YouTube post scheduled successfully');
+      this.ngOnInit();
     } catch (error) {
       console.log(error);
     }

@@ -117,7 +117,6 @@ p {
 a {
   color: $secondaryColor;
   text-decoration: none;
-  font-weight: bold;
 
   &:hover {
     color: $secondaryColorHover;
@@ -323,6 +322,18 @@ app-widget.clickable {
   background-color: $primaryColor;
 }
 
+.bg-primary {
+  background-color: $primaryColor !important;
+}
+
+.dash-tile {
+  margin: 1em;
+
+  &.clickable:hover {
+    background-color: $primaryColorHover !important;
+  }
+}
+
 // Custom Material Styles
 
 .mat-menu-panel {
@@ -440,7 +451,11 @@ app-widget {
   }
 
   .cal-day-cell.cal-today {
-    background-color: var(--influ-background);
+    background-color: $primaryColor;
+
+    &:hover {
+      background-color: $primaryColor;
+    }
   }
 
   .cal-day-cell.selected {

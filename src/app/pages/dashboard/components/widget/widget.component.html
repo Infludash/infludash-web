@@ -8,7 +8,7 @@
       <button *ngIf="type==='list'" mat-mini-fab aria-label="Add" class="widget-control">
         <mat-icon>add</mat-icon>
       </button>
-      <button mat-mini-fab aria-label="Refresh" class="widget-control">
+      <button mat-mini-fab aria-label="Refresh" class="widget-control" (click)="ngOnInit()">
         <mat-icon>autorenew</mat-icon>
       </button>
     </div>
