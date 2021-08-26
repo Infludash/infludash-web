@@ -1,0 +1,87 @@
+<app-widget title="YouTube">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Description
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <h4>Configure a boilerplate description for your video's</h4>
+      <form [formGroup]="boilerplateDescription" (ngSubmit)="saveBoilerplateDescription($event)">
+        <mat-form-field appearance="outline">
+          <mat-label>Boilerplate</mat-label>
+          <textarea formControlName="description" matInput required [value]="preferences?.description"></textarea>
+        </mat-form-field>
+        <div class="d-flex justify-content-end">
+          <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+      </form>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Category
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <h4>Configure your most used categories for your video's. Leave blank to delete them.</h4>
+      <p>Currently set: {{preferences?.categories}}</p>
+      <form [formGroup]="standardCategoriesForm" (ngSubmit)="saveStandardCategories($event)">
+        <mat-form-field appearance="outline">
+          <!-- <mat-label>Categories *</mat-label> -->
+          <mat-chip-list #chipList aria-label="Categories for your video">
+            <mat-chip *ngFor="let category of categories" [selectable]="selectable" [removable]="removable"
+              (removed)="removeCategory(category)">
+              {{category}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New category..." [matChipInputFor]="chipList" [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addCategory($event)" formControlName="categories" required
+              [formControl]="categoryCtrl">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let category of allCategories" [value]="category">
+              {{category.title}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div class="d-flex justify-content-end">
+          <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+      </form>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Tags
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <h4>Configure your most used tags for your video's. Leave blank to delete them.</h4>
+      <p>Currently set: {{preferences?.tags}}</p>
+      <form [formGroup]="standardTagsForm" (ngSubmit)="saveStandardTags($event)">
+        <mat-form-field appearance="outline">
+          <!-- <mat-label>Tags *</mat-label> -->
+          <mat-chip-list #chipList aria-label="Tags for your video">
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+              (removed)="removeTag(tag)">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New tag..." [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addTag($event)" formControlName="tags" required>
+          </mat-chip-list>
+        </mat-form-field>
+        <div class="d-flex justify-content-end">
+          <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</app-widget>
+<app-widget title="Facebook">
+
+</app-widget>
+<app-widget title="Instagram">
+
+</app-widget>

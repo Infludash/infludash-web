@@ -1,0 +1,15 @@
+// Load variables
+@import "../../../../variables.scss";
+
+h4 {
+  font-family: "Text";
+  color: $gray;
+  margin-bottom: 0.5em;
+}
+
+.mat-form-field {
+  width: 100%;
+  textarea {
+    min-height: 10em;
+  }
+}

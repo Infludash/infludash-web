@@ -356,6 +356,20 @@ app-widget.clickable {
   margin: 0 !important;
 }
 
+.mat-autocomplete-panel {
+  background-color: var(--influ-background) !important;
+}
+.mat-autocomplete-panel .mat-option.mat-selected:not(.mat-active):not(:hover) {
+  background-color: var(--influ-background-variant) !important;
+}
+.mat-expansion-panel,
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description,
+.mat-expansion-indicator::after {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+
 .mat-tab-label {
   color: var(--influ-text) !important;
 }

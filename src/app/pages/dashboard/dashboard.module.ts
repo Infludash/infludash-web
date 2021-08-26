@@ -31,6 +31,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { DeletePostDialogComponent } from './components/delete-post-dialog/delete-post-dialog.component';
 import { DeleteProfileDialogComponent } from './components/delete-profile-dialog/delete-profile-dialog.component';
+import { PreferencesComponent } from './preferences/preferences.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { DeleteProfileDialogComponent } from './components/delete-profile-dialog
     FileUploadComponent,
     DeletePostDialogComponent,
     DeleteProfileDialogComponent,
+    PreferencesComponent,
   ],
   imports: [
     BrowserModule,

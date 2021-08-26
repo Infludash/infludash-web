@@ -52,6 +52,7 @@ export class PostsComponent implements OnInit {
 
   today: Date = new Date();
   selectedFbPages: any[] = [];
+  preferences: any = {};
 
   constructor(
     public mode: ModeService,
@@ -64,9 +65,10 @@ export class PostsComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.preferences = await this.getPreferences();
     this.uploadYTVidForm = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [this.preferences.description, Validators.required],
       tags: ['', Validators.required],
       categoryId: ['', Validators.required],
       privacyStatus: ['', Validators.required],
@@ -269,5 +271,17 @@ export class PostsComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async getPreferences(): Promise<any> {
+    const preferences = await this.apiService.apiRequest(
+      'post',
+      'preferences/youtube',
+      ApiType.base,
+      true,
+      { email: localStorage.getItem('email') }
+    );
+
+    return preferences[0];
   }
 }

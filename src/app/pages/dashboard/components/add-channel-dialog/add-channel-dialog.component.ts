@@ -88,6 +88,13 @@ export class AddChannelDialogComponent implements OnInit {
                 regionCode: 'BE',
               }
             );
+            const ytpref = await this.apiService.apiRequest(
+              'post',
+              'preferences/youtube/description',
+              ApiType.base,
+              true,
+              { email: localStorage.getItem('email'), description: null }
+            );
             break;
           case 'FACEBOOK':
             const fbresp = await this.apiService.apiRequest(
